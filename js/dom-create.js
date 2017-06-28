@@ -22,23 +22,40 @@ document.addEventListener('DOMContentLoaded', function () {
       shoppingList.appendChild(listItem)
     })
 
-    var searchInput = document.querySelector('.search-input')
+// Search By BRAND
+    var searchByBrandInput = document.querySelector('.brand-input')
+    var searchByBrandSubmit = document.querySelector('.brand-button')
 
-    var searchSubmit = document.querySelector('.search-button')
+    searchByBrandSubmit.addEventListener('click', function () {
+      shoppingList.innerHTML = ''
+      //console.log(searchByBrandInput.value);
+      var itemsByBrand = getItemsByBrand(items, searchByBrandInput.value)
+      for (var i = 0; i < itemsByBrand.length; i++) {
+        var itemsByBrandList = document.createElement('li')
+        itemsByBrandList.textContent = itemsByBrand[i]
+        shoppingList.appendChild(itemsByBrandList)
+      }
+    })
 
-    var cartButton = document.querySelector('button')
-
-    cartButton.addEventListener ('click', addToCart)
-
-    function addToCart () {
-
-      var lastItem = document.querySelectorAll('#shopping-list li')
-      var cartList = document.querySelector('#cart-list')
-      cartList.appendChild(lastItem[lastItem.length-1])
+    function getItemsByBrand (items, brand) {
+      var arrItemsByBrand = []
+      for (var i = 0; i < items.length; i++) {
+        if (items[i].product.brand === brand) {
+          arrItemsByBrand.push(items[i].product.title)
+        }
+      }
+      return arrItemsByBrand
     }
 
+// Add to Cart
+    var cartButton = document.querySelector('button')
 
-
+    cartButton.addEventListener('click', addToCart)
+    function addToCart () {
+      var lastItem = document.querySelectorAll('#shopping-list li')
+      var cartList = document.querySelector('#cart-list')
+      cartList.appendChild(lastItem[lastItem.length - 1])
+    }
 
     // DO NOT REMOVE ANYTHING AFTER THIS LINE
   })
