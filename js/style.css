@@ -1,0 +1,29 @@
+.container {
+  width: 90%;
+  margin: 0 auto; // floating in the center
+}
+
+.left-content, .right-content {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.left-content {
+  width: 60%;
+}
+
+.right-content {
+  width: 30%;
+}
+
+.shopping-list, .cart-list {
+  display: inline-block;
+  vertical-align: top;
+}
+.shopping-list {
+  width: 65%;
+}
+
+.cart-list {
+  width: 30%;
+}

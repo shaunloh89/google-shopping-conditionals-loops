@@ -76,8 +76,8 @@ var data = require('../products.json')
 //
 // Note all other functions (below) use the return of this function as their input.
 
-var getItems = function (objectData) {
-   return data.items
+var getItems = function (object) {
+   return object.items
 }
 //console.log(getItems(data))
 
