@@ -29,11 +29,11 @@ document.addEventListener('DOMContentLoaded', function () {
     searchByBrandSubmit.addEventListener('click', function () {
       shoppingList.innerHTML = ''
       //console.log(searchByBrandInput.value);
-      var itemsByBrand = getItemsByBrand(items, searchByBrandInput.value)
-      for (var i = 0; i < itemsByBrand.length; i++) {
-        var itemsByBrandList = document.createElement('li')
-        itemsByBrandList.textContent = itemsByBrand[i]
-        shoppingList.appendChild(itemsByBrandList)
+      var foundItemsByBrand = getItemsByBrand(items, searchByBrandInput.value)
+      for (var i = 0; i < foundItemsByBrand.length; i++) {
+        var foundItemsByBrandList = document.createElement('li')
+        foundItemsByBrandList.textContent = foundItemsByBrand[i]
+        shoppingList.appendChild(foundItemsByBrandList)
       }
     })
 
@@ -46,6 +46,35 @@ document.addEventListener('DOMContentLoaded', function () {
       }
       return arrItemsByBrand
     }
+//Search by author
+  var searchByAuthorInput = document.querySelector('.author-input')
+  var searchByAuthorSubmit = document.querySelector('.author-button')
+
+  searchByAuthorSubmit.addEventListener('click', function () {
+    // 'click' function begins ...
+    shoppingList.innerHTML = '' //Clears the initial shopping list
+    //console.log(searchByAuthorInput.value)
+    // create array that stores the searched items according to the search value
+    var foundItemsByAuthor = getItemsByAuthor (items, searchByAuthorInput.value)
+    // for loop to go through each item in array
+    for (var j = 0; j < foundItemsByAuthor.length; j++) {
+      // for each element, create a new 'li'
+      var foundItemsByAuthorList = document.createElement('li')
+      // add the item title to the 'li' using textContent
+      foundItemsByAuthorList.textContent = foundItemsByAuthor[j]
+      // add the 'li' to the parent 'shoppingList'
+      shoppingList.appendChild(foundItemsByAuthorList)
+    }
+  })
+// get items by author function
+  function getItemsByAuthor (items, author) {
+    var arrItemsByAuthor = []
+    for (var i = 0; i < items.length; i++) {
+      if (items[i].product.author.name === author) {
+        arrItemsByAuthor.push(items[i].product.title)
+      }
+    }return arrItemsByAuthor
+  }
 
 // Add to Cart
     var cartButton = document.querySelector('button')
